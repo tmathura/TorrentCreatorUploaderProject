@@ -12,17 +12,6 @@ namespace TorrentCreatorUploaderLogic
     {
         public void StartTorrentCreateProcess(FileSystemEventArgs e)
         {
-            var assem = Assembly.GetExecutingAssembly();
-            var fileInfo = new FileInfo(assem.Location);
-
-            if (DateTime.Now > fileInfo.LastWriteTime.AddMonths(1))
-            {
-                new TorrentUpload().Log(
-                    "Error: This software build is 1 month old, please contact the developer to get a new build.",
-                    EventLogEntryType.Error);
-                Environment.Exit(0);
-            }
-
             var sourceFile = e.FullPath;
             var fileName = Path.GetFileName(sourceFile);
 

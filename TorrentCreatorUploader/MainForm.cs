@@ -25,7 +25,6 @@ namespace TorrentCreatorUploader
             InitializeComponent();
 
             var assem = Assembly.GetExecutingAssembly();
-            var fileInfo = new FileInfo(assem.Location);
 
             if (ApplicationDeployment.IsNetworkDeployed)
             {
@@ -38,14 +37,6 @@ namespace TorrentCreatorUploader
             //Text = "Torrent Creator Uploader v" + Application.ProductVersion;
             Text = @"Torrent Creator Uploader v" + assem.GetName().Version;
             //}
-
-            if (DateTime.Now > fileInfo.LastWriteTime.AddMonths(1))
-            {
-                MessageBox.Show(this,
-                    @"This software build is 1 month old, please contact the developer to get a new build.", @"Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(0);
-            }
 
             cbUploadTorrent.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["UploadTorrent"]);
             cbPieceSize.SelectedIndex = 0;
