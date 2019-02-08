@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?define Name = "Torrent Creator Uploader" ?>
+<?define Manufacturer = "TM_Dev" ?>
+<?define UpgradeCode = "{1240E0CD-B3D2-44A7-B064-11B3C0709D69}" ?>
+<?define MonoTorrent = "MonoTorrent.dll" ?>
+<?define RestSharp = "RestSharp.dll" ?>
+<?define UTorrentClientApi = "UTorrentClientApi.dll" ?>
+<?define Newtonsoft = "Newtonsoft.Json.dll" ?>
+<?define TorrentCreatorUploaderLogic = "TorrentCreatorUploaderLogic.dll" ?>
+<?define System.ValueTuple = "System.ValueTuple.dll" ?>
+<?define Telegram.Bot = "Telegram.Bot.dll" ?>
+<?define TorrentCreatorUploaderDB = "TorrentCreatorUploaderDB.accdb" ?>
+<?define TorrentCreatorUploaderServiceConfig = "TorrentCreatorUploaderService.exe.config" ?>
+<?define TorrentCreatorUploaderServiceIcon = "..\TorrentCreatorUploaderService\TorrentCreatorUploaderProject.ico" ?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" UpgradeCode="$(var.UpgradeCode)" Version="$(var.VersionNumber)" Language="1033"
+           Name="$(var.Name)" Manufacturer="$(var.Manufacturer)">
+    <Package InstallerVersion="300" Compressed="yes" />
+    <Media Id="1" Cabinet="TorrentCreatorUploaderService.cab" EmbedCab="yes" />
+
+    <!-- Allow upgrades and prevent downgrades -->
+    <MajorUpgrade DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
+
+    <!-- Define the directory structure -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="ROOTDIRECTORY" Name="$(var.Manufacturer)">
+          <Directory Id="APPLICATIONROOTDIRECTORY" Name="$(var.Name)" />
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <!-- Add files to your installer package -->
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="$(var.TorrentCreatorUploaderService.TargetFileName)" Guid="{45FDCC37-EFB2-4924-A010-53F3A5F870CF}">
+        <File Id="$(var.TorrentCreatorUploaderService.TargetFileName)"
+              Source="$(var.TorrentCreatorUploaderService.TargetPath)" KeyPath="yes" />
+
+        <!-- Remove the all files on uninstall -->
+        <RemoveFile Id="ROOTDIRECTORY" Name="*.*" On="both" />
+
+        <!-- Tell WiX to install the Service -->
+        <ServiceInstall Id="ServiceInstaller"
+                        Type="ownProcess"
+                        Name="TorrentCreatorUploaderService"
+                        DisplayName="Torrent Creator Service"
+                        Description="A Torrent Creator Service that watches a folder for files that are created, changed, renamed or deleted to copy to another folder and then create a torrent file for it and then uploads it to the specified torrent site and sends it to your torrent client."
+                        Start="auto"
+                        ErrorControl="normal" />
+
+        <!-- Tell WiX to start the Service -->
+        <ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall"
+                        Name="TorrentCreatorUploaderService" Wait="yes" />
+      </Component>
+      <Component Id="$(var.TorrentCreatorUploaderServiceConfig)" Guid="{5FBAB5C4-73DD-4DE7-A611-CDF736F59117}">
+        <File Id="$(var.TorrentCreatorUploaderServiceConfig)"
+              Source="$(var.TorrentCreatorUploaderService.TargetDir)$(var.TorrentCreatorUploaderServiceConfig)"
+              KeyPath="yes" />
+      </Component>
+      <Component Id="$(var.MonoTorrent)" Guid="{D695AC51-187A-4E8A-9585-AEE2013D9FAB}">
+        <File Id="$(var.MonoTorrent)" Source="$(var.TorrentCreatorUploaderService.TargetDir)$(var.MonoTorrent)"
+              KeyPath="yes" />
+      </Component>
+      <Component Id="$(var.RestSharp)" Guid="{8464A69A-0EB7-4B15-8E25-D34344BFBB26}">
+        <File Id="$(var.RestSharp)" Source="$(var.TorrentCreatorUploaderService.TargetDir)$(var.RestSharp)"
+              KeyPath="yes" />
+      </Component>
+      <Component Id="$(var.UTorrentClientApi)" Guid="{6F40318A-DC9B-4B34-978A-7384AE7FFAB3}">
+        <File Id="$(var.UTorrentClientApi)"
+              Source="$(var.TorrentCreatorUploaderService.TargetDir)$(var.UTorrentClientApi)" KeyPath="yes" />
+      </Component>
+      <Component Id="$(var.Newtonsoft)" Guid="{568D6DCC-9CB6-4C43-A279-8BACC0547885}">
+        <File Id="$(var.Newtonsoft)" Source="$(var.TorrentCreatorUploaderService.TargetDir)$(var.Newtonsoft)"
+              KeyPath="yes" />
+      </Component>
+      <Component Id="$(var.TorrentCreatorUploaderLogic)" Guid="{52035EC6-741C-46D5-A62F-EF5503B6B0FB}">
+        <File Id="$(var.TorrentCreatorUploaderLogic)"
+              Source="$(var.TorrentCreatorUploaderService.TargetDir)$(var.TorrentCreatorUploaderLogic)" KeyPath="yes" />
+      </Component>
+      <Component Id="$(var.System.ValueTuple)" Guid="{339D0948-BA19-442B-9FB8-2D0A61F20A66}">
+        <File Id="$(var.System.ValueTuple)"
+              Source="$(var.TorrentCreatorUploaderService.TargetDir)$(var.System.ValueTuple)" KeyPath="yes" />
+      </Component>
+      <Component Id="$(var.Telegram.Bot)" Guid="{268B669B-3BD5-44FD-BFFD-F8C37845C0CB}">
+        <File Id="$(var.Telegram.Bot)" Source="$(var.TorrentCreatorUploaderService.TargetDir)$(var.Telegram.Bot)"
+              KeyPath="yes" />
+      </Component>
+      <Component Id="$(var.TorrentCreatorUploaderDB)" Guid="{6685E130-EF5D-4727-BF8D-F65F287A9EF7}">
+        <File Id="$(var.TorrentCreatorUploaderDB)"
+              Source="$(var.TorrentCreatorUploaderService.TargetDir)$(var.TorrentCreatorUploaderDB)" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Tell WiX to install the files -->
+    <Feature Id="MainApplication" Title="Main Application" Level="1">
+      <ComponentRef Id="$(var.TorrentCreatorUploaderService.TargetFileName)" />
+      <ComponentRef Id="$(var.TorrentCreatorUploaderServiceConfig)" />
+      <ComponentRef Id="$(var.MonoTorrent)" />
+      <ComponentRef Id="$(var.RestSharp)" />
+      <ComponentRef Id="$(var.UTorrentClientApi)" />
+      <ComponentRef Id="$(var.Newtonsoft)" />
+      <ComponentRef Id="$(var.TorrentCreatorUploaderLogic)" />
+      <ComponentRef Id="$(var.System.ValueTuple)" />
+      <ComponentRef Id="$(var.Telegram.Bot)" />
+      <ComponentRef Id="$(var.TorrentCreatorUploaderDB)" />
+    </Feature>
+    <Icon Id="icon.ico" SourceFile="$(var.TorrentCreatorUploaderServiceIcon)" />
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+  </Product>
+</Wix>
