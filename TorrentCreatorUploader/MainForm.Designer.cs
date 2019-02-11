@@ -297,6 +297,7 @@
             this.tbTorrentSitePassword.Name = "tbTorrentSitePassword";
             this.tbTorrentSitePassword.Size = new System.Drawing.Size(190, 20);
             this.tbTorrentSitePassword.TabIndex = 24;
+            this.tbTorrentSitePassword.UseSystemPasswordChar = true;
             // 
             // lTorrentSiteUsername
             // 
@@ -784,6 +785,7 @@
             this.tbuTorrentPassword.Name = "tbuTorrentPassword";
             this.tbuTorrentPassword.Size = new System.Drawing.Size(207, 20);
             this.tbuTorrentPassword.TabIndex = 22;
+            this.tbuTorrentPassword.UseSystemPasswordChar = true;
             // 
             // luTorrentUsername
             // 
@@ -899,6 +901,7 @@
             this.tbDelugePassword.Name = "tbDelugePassword";
             this.tbDelugePassword.Size = new System.Drawing.Size(207, 20);
             this.tbDelugePassword.TabIndex = 30;
+            this.tbDelugePassword.UseSystemPasswordChar = true;
             // 
             // lDelugeUsername
             // 
