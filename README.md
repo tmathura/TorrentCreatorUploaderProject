@@ -1,6 +1,6 @@
-| Build |
-|-------|
-| [![Build status](https://ci.appveyor.com/api/projects/status/wnwdk00harmugerj?svg=true)](https://ci.appveyor.com/project/tmathura/torrentcreatoruploaderproject) |
+| Master | Dev |
+|-------|-------|
+| [![Build status](https://ci.appveyor.com/api/projects/status/wnwdk00harmugerj/branch/master?svg=true)](https://ci.appveyor.com/project/tmathura/torrentcreatoruploaderproject/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/wnwdk00harmugerj?svg=true)](https://ci.appveyor.com/project/tmathura/torrentcreatoruploaderproject) |
 
 # Torrent Creator Uploader Project
 
