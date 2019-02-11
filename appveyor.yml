@@ -1,5 +1,4 @@
 version: 1.0.0.{build}
-skip_tags: true
 image: Visual Studio 2017
 before_build:
 - cmd: nuget restore TorrentCreatorUploaderProject.sln
@@ -15,6 +14,8 @@ deploy:
 - provider: GitHub
   auth_token:
     secure: U64+rJn7WkpD8O1/E9MEnh7wpkjvPAl10AZ+hsYNOWxXUQoBgzho9jib9R+w9WW9
+  on:
+    branch: master
 notifications:
 - provider: Email
   to:
