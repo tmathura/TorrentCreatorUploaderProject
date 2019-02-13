@@ -11,7 +11,6 @@ using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types.InlineKeyboardButtons;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace TorrentCreatorUploaderLogic
@@ -174,7 +173,7 @@ namespace TorrentCreatorUploaderLogic
                 var fileSystemWatchAndProcessValidFileProcessAttempts = Convert.ToInt32(
                     ConfigurationManager.AppSettings["FileSystemWatchAndProcessValidFileProcessAttempts"]);
 
-                if (message == null || message.Type != MessageType.TextMessage) return;
+                if (message == null || message.Type != MessageType.Text) return;
 
                 if (text == "/start")
                 {
@@ -606,9 +605,7 @@ namespace TorrentCreatorUploaderLogic
                 buttons[i] = buttonList
                     .Skip(i * columns)
                     .Take(columns)
-                    .Select(direction => new InlineKeyboardCallbackButton(
-                        direction.Value, direction.Key
-                    ))
+                    .Select(direction => new InlineKeyboardButton { Text = direction.Value, CallbackData = direction.Key })
                     .ToArray();
             return new InlineKeyboardMarkup(buttons);
         }
