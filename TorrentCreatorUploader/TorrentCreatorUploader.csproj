@@ -154,8 +154,11 @@
   <ItemGroup>
     <None Include="..\TorrentCreatorUploaderLogic\App.config">
       <Link>App.config</Link>
+      <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\folderSource.Image.png" />
     <None Include="Resources\fileSource.Image.png" />
