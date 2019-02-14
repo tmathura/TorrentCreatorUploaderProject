@@ -167,9 +167,6 @@
         RU5ErkJggg==
 </value>
   </data>
-  <data name="lUploadTorrentWarning.Text" xml:space="preserve">
-    <value>NB: When sending the .torrent file to uTorrent make sure the file you created the .torrent file for is in the default saved directory of uTorrent, otherwise it won't seed since adding torrents via the Web UI saves it in uTorrent’s default download location.</value>
-  </data>
   <data name="bDelugeInstalledFolder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO

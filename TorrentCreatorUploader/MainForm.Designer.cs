@@ -80,7 +80,6 @@
             this.bFolder = new System.Windows.Forms.Button();
             this.bFile = new System.Windows.Forms.Button();
             this.gbuTorrent = new System.Windows.Forms.GroupBox();
-            this.lUploadTorrentWarning = new System.Windows.Forms.Label();
             this.luTorrentPassword = new System.Windows.Forms.Label();
             this.tbuTorrentPassword = new System.Windows.Forms.TextBox();
             this.luTorrentUsername = new System.Windows.Forms.Label();
@@ -742,7 +741,6 @@
             // 
             this.gbuTorrent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbuTorrent.Controls.Add(this.lUploadTorrentWarning);
             this.gbuTorrent.Controls.Add(this.luTorrentPassword);
             this.gbuTorrent.Controls.Add(this.tbuTorrentPassword);
             this.gbuTorrent.Controls.Add(this.luTorrentUsername);
@@ -754,19 +752,10 @@
             this.gbuTorrent.Controls.Add(this.cbSendTorrentToUTorrentViaWebApi);
             this.gbuTorrent.Location = new System.Drawing.Point(669, 21);
             this.gbuTorrent.Name = "gbuTorrent";
-            this.gbuTorrent.Size = new System.Drawing.Size(325, 215);
+            this.gbuTorrent.Size = new System.Drawing.Size(325, 143);
             this.gbuTorrent.TabIndex = 28;
             this.gbuTorrent.TabStop = false;
             this.gbuTorrent.Text = "uTorrent";
-            // 
-            // lUploadTorrentWarning
-            // 
-            this.lUploadTorrentWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lUploadTorrentWarning.Location = new System.Drawing.Point(6, 144);
-            this.lUploadTorrentWarning.Name = "lUploadTorrentWarning";
-            this.lUploadTorrentWarning.Size = new System.Drawing.Size(312, 68);
-            this.lUploadTorrentWarning.TabIndex = 40;
-            this.lUploadTorrentWarning.Text = resources.GetString("lUploadTorrentWarning.Text");
             // 
             // luTorrentPassword
             // 
@@ -877,7 +866,7 @@
             this.gbDeluge.Controls.Add(this.tbDelugeInstalledFolder);
             this.gbDeluge.Controls.Add(this.bDelugeInstalledFolder);
             this.gbDeluge.Controls.Add(this.cbSendTorrentToDelugeViaDelugeConsole);
-            this.gbDeluge.Location = new System.Drawing.Point(669, 242);
+            this.gbDeluge.Location = new System.Drawing.Point(669, 170);
             this.gbDeluge.Name = "gbDeluge";
             this.gbDeluge.Size = new System.Drawing.Size(325, 171);
             this.gbDeluge.TabIndex = 29;
@@ -1069,7 +1058,7 @@
             this.gbFileWatcher.Controls.Add(this.bFileWatcherDisable);
             this.gbFileWatcher.Controls.Add(this.lFileWatcher);
             this.gbFileWatcher.Controls.Add(this.bFileWatcherEnable);
-            this.gbFileWatcher.Location = new System.Drawing.Point(669, 419);
+            this.gbFileWatcher.Location = new System.Drawing.Point(669, 347);
             this.gbFileWatcher.Name = "gbFileWatcher";
             this.gbFileWatcher.Size = new System.Drawing.Size(325, 56);
             this.gbFileWatcher.TabIndex = 31;
@@ -1233,7 +1222,6 @@
         private System.Windows.Forms.ComboBox cbUploadTorrentCategoryId;
         private System.Windows.Forms.ComboBox cbUploadTorrentLanguageId;
         private System.Windows.Forms.Label luploadTorrentLanguageId;
-        private System.Windows.Forms.Label lUploadTorrentWarning;
         private System.Windows.Forms.Label lDelugePassword;
         private System.Windows.Forms.TextBox tbDelugePassword;
         private System.Windows.Forms.Label lDelugeUsername;
