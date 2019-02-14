@@ -161,14 +161,12 @@ namespace TorrentCreatorUploaderLogic
             var uTorrentPort = Convert.ToInt32(ConfigurationManager.AppSettings["uTorrentPort"]);
             var uTorrentUsername = ConfigurationManager.AppSettings["uTorrentUsername"];
             var uTorrentPassword = ConfigurationManager.AppSettings["uTorrentPassword"];
-            var uTorrentDownloadFolderSubFolderUse =
-                Convert.ToBoolean(ConfigurationManager.AppSettings["uTorrentDownloadFolderSubFolderUse"]);
 
             new TorrentUpload().Log(
                 $"Starting process of sending torrent via uTorrent Web UI. Filename: [{fileName}]",
                 EventLogEntryType.Information);
             new TorrentUpload().SendTorrentToUTorrentViaWebUi(destFile, uTorrentIp, uTorrentPort, uTorrentUsername,
-                uTorrentPassword, uTorrentDownloadFolderSubFolderUse, queuedFileInfo.Guid);
+                uTorrentPassword, queuedFileInfo.Guid);
 
             new TorrentUpload().InsertOrUpdateDb(
                 $"UPDATE tTorrentCreatorUploaderFiles SET SentTorrentToUTorrentViaWebApi = True WHERE ID = {queuedFileInfo.Id}");
