@@ -261,15 +261,13 @@ namespace TorrentCreatorUploader
                                     var uTorrentPort = Convert.ToInt32(tbuTorrentPort.Text);
                                     var uTorrentUsername = tbuTorrentUsername.Text;
                                     var uTorrentPassword = tbuTorrentPassword.Text;
-                                    var uTorrentDownloadFolderSubFolderUse =
-                                        false; //= Convert.ToBoolean(ConfigurationManager.AppSettings["uTorrentDownloadFolderSubFolderUse"]);
 
                                     new TorrentUpload().Log(
                                         $"Starting process of sending torrent via uTorrent Web UI. Filename: [{Path.GetFileName($"{destFile}.torrent")}]",
                                         EventLogEntryType.Information);
                                     new TorrentUpload().SendTorrentToUTorrentViaWebUi(destFile, uTorrentIp,
                                         uTorrentPort, uTorrentUsername, uTorrentPassword,
-                                        false, guid);
+                                        guid);
                                     MessageBox.Show(this, @"Torrent file sent to uTorrent successfully.", @"Info",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }

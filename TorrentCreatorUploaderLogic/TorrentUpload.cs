@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using UTorrent.Api;
 
@@ -495,7 +496,7 @@ namespace TorrentCreatorUploaderLogic
         }
 
         public void SendTorrentToUTorrentViaWebUi(string filePath, string uTorrentIp, int uTorrentPort,
-            string uTorrentUsername, string uTorrentPassword, bool uTorrentDownloadFolderSubFolderUse, Guid guid)
+            string uTorrentUsername, string uTorrentPassword, Guid guid)
         {
             var torrentFilePath = filePath.Replace(Path.GetFileName(filePath), Convert.ToString(guid)) + ".torrent";
             var fs = new FileStream(torrentFilePath, FileMode.Open);
@@ -504,27 +505,34 @@ namespace TorrentCreatorUploaderLogic
                 $"Torrent SendTorrentToUTorrentViaWebUi process: about to send torrent file to uTorrent. URL: [{uTorrentIp}:{uTorrentPort}]",
                 EventLogEntryType.Information);
 
-            var copyFileToUploadFolder = Convert.ToBoolean(ConfigurationManager.AppSettings["CopyFileToUploadFolder"]);
-            if (uTorrentDownloadFolderSubFolderUse)
+            var clientSettings = client.GetSettings();
+            var dirCompletedDownloadFlag = false;
+            var dirCompletedDownload = "";
+
+            foreach (var item in clientSettings.Result.Source["settings"])
             {
-                if (copyFileToUploadFolder)
+                if (item[0].ToString() == "dir_completed_download_flag")
                 {
-                    var uploadFolder = ConfigurationManager.AppSettings["UploadFolder"];
-                    var response = client.PostTorrent(fs, Path.GetFileName(uploadFolder));
-                    var torrent = response.AddedTorrent;
+                    dirCompletedDownloadFlag = Convert.ToBoolean(item[2].ToString());
                 }
-                else
+                if (item[0].ToString() == "dir_completed_download")
                 {
-                    var downloadFolder = ConfigurationManager.AppSettings["DownloadFolder"];
-                    var response = client.PostTorrent(fs, Path.GetFileName(downloadFolder));
-                    var torrent = response.AddedTorrent;
+                    dirCompletedDownload = item[2].ToString();
                 }
             }
-            else
-            {
-                var response = client.PostTorrent(fs);
-                var torrent = response.AddedTorrent;
-            }
+
+            client.SetSetting("dir_completed_download_flag", true);
+            client.SetSetting("dir_completed_download", Path.GetDirectoryName(filePath));
+            Log(
+                $"Torrent SendTorrentToUTorrentViaWebUi process: updating uTorrent settings to the file path. Path: {Path.GetDirectoryName(filePath)}",
+                EventLogEntryType.Information);
+            var response = client.PostTorrent(fs);
+            var torrent = response.AddedTorrent;
+            client.SetSetting("dir_completed_download_flag", dirCompletedDownloadFlag);
+            client.SetSetting("dir_completed_download", dirCompletedDownload);
+            Log(
+                $"Torrent SendTorrentToUTorrentViaWebUi process: reverting uTorrent settings to original path settings. Path: {dirCompletedDownload} ",
+                EventLogEntryType.Information);
 
             Log(
                 $"Torrent {Path.GetFileName(filePath)} sent to uTorrent successfully via Web UI.",
