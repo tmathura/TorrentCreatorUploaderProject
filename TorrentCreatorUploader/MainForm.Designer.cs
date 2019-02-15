@@ -109,10 +109,6 @@
             this.cbCopyTorrentFile = new System.Windows.Forms.CheckBox();
             this.gbDeleteTorrentFileAfterEverything = new System.Windows.Forms.GroupBox();
             this.cbDeleteTorrentFileAfterEverything = new System.Windows.Forms.CheckBox();
-            this.gbFileWatcher = new System.Windows.Forms.GroupBox();
-            this.bFileWatcherDisable = new System.Windows.Forms.Button();
-            this.lFileWatcher = new System.Windows.Forms.Label();
-            this.bFileWatcherEnable = new System.Windows.Forms.Button();
             this.gbTorrentSite.SuspendLayout();
             this.gbAdvProps.SuspendLayout();
             this.gbOther.SuspendLayout();
@@ -122,7 +118,6 @@
             this.gbDeluge.SuspendLayout();
             this.gbCopyTorrentFile.SuspendLayout();
             this.gbDeleteTorrentFileAfterEverything.SuspendLayout();
-            this.gbFileWatcher.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbTorrentSite
@@ -1051,58 +1046,11 @@
             this.cbDeleteTorrentFileAfterEverything.Text = "Delete Torrent File After Everything";
             this.cbDeleteTorrentFileAfterEverything.UseVisualStyleBackColor = true;
             // 
-            // gbFileWatcher
-            // 
-            this.gbFileWatcher.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbFileWatcher.Controls.Add(this.bFileWatcherDisable);
-            this.gbFileWatcher.Controls.Add(this.lFileWatcher);
-            this.gbFileWatcher.Controls.Add(this.bFileWatcherEnable);
-            this.gbFileWatcher.Location = new System.Drawing.Point(669, 347);
-            this.gbFileWatcher.Name = "gbFileWatcher";
-            this.gbFileWatcher.Size = new System.Drawing.Size(325, 56);
-            this.gbFileWatcher.TabIndex = 31;
-            this.gbFileWatcher.TabStop = false;
-            this.gbFileWatcher.Text = "File Watcher";
-            // 
-            // bFileWatcherDisable
-            // 
-            this.bFileWatcherDisable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bFileWatcherDisable.Enabled = false;
-            this.bFileWatcherDisable.Location = new System.Drawing.Point(206, 21);
-            this.bFileWatcherDisable.Name = "bFileWatcherDisable";
-            this.bFileWatcherDisable.Size = new System.Drawing.Size(52, 23);
-            this.bFileWatcherDisable.TabIndex = 32;
-            this.bFileWatcherDisable.Text = "Disable";
-            this.bFileWatcherDisable.UseVisualStyleBackColor = true;
-            this.bFileWatcherDisable.Click += new System.EventHandler(this.bFileWatcherDisable_Click);
-            // 
-            // lFileWatcher
-            // 
-            this.lFileWatcher.AutoSize = true;
-            this.lFileWatcher.Location = new System.Drawing.Point(6, 26);
-            this.lFileWatcher.Name = "lFileWatcher";
-            this.lFileWatcher.Size = new System.Drawing.Size(146, 13);
-            this.lFileWatcher.TabIndex = 22;
-            this.lFileWatcher.Text = "File Watcher Enable/Disable:";
-            // 
-            // bFileWatcherEnable
-            // 
-            this.bFileWatcherEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bFileWatcherEnable.Location = new System.Drawing.Point(154, 21);
-            this.bFileWatcherEnable.Name = "bFileWatcherEnable";
-            this.bFileWatcherEnable.Size = new System.Drawing.Size(52, 23);
-            this.bFileWatcherEnable.TabIndex = 16;
-            this.bFileWatcherEnable.Text = "Enable";
-            this.bFileWatcherEnable.UseVisualStyleBackColor = true;
-            this.bFileWatcherEnable.Click += new System.EventHandler(this.bFileWatcherEnable_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 619);
-            this.Controls.Add(this.gbFileWatcher);
             this.Controls.Add(this.gbDeleteTorrentFileAfterEverything);
             this.Controls.Add(this.gbCopyTorrentFile);
             this.Controls.Add(this.gbDeluge);
@@ -1137,8 +1085,6 @@
             this.gbCopyTorrentFile.PerformLayout();
             this.gbDeleteTorrentFileAfterEverything.ResumeLayout(false);
             this.gbDeleteTorrentFileAfterEverything.PerformLayout();
-            this.gbFileWatcher.ResumeLayout(false);
-            this.gbFileWatcher.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1230,10 +1176,6 @@
         private System.Windows.Forms.TextBox tbDelugePort;
         private System.Windows.Forms.Label lDelugeIP;
         private System.Windows.Forms.TextBox tbDelugeIP;
-        private System.Windows.Forms.GroupBox gbFileWatcher;
-        private System.Windows.Forms.Label lFileWatcher;
-        private System.Windows.Forms.Button bFileWatcherEnable;
-        private System.Windows.Forms.Button bFileWatcherDisable;
     }
 }
 
