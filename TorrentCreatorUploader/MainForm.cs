@@ -175,7 +175,7 @@ namespace TorrentCreatorUploader
             gbSource.Enabled = gbProperties.Enabled = gbAdvProps.Enabled = gbOther.Enabled = gbTorrentSite.Enabled =
                 gbCopyTorrentFile.Enabled =
                     gbDeleteTorrentFileAfterEverything.Enabled =
-                        gbuTorrent.Enabled = gbDeluge.Enabled = gbFileWatcher.Enabled = false;
+                        gbuTorrent.Enabled = gbDeluge.Enabled = false;
             bCreate.Enabled = false;
             _creationResult =
                 _torrCreator.BeginCreate(new TorrentFileSource(tbSource.Text, cbIgnoreHidden.Checked, tbSkipFiles.Text),
@@ -351,7 +351,7 @@ namespace TorrentCreatorUploader
                 gbSource.Enabled = gbProperties.Enabled = gbAdvProps.Enabled = gbOther.Enabled = gbTorrentSite.Enabled =
                     gbCopyTorrentFile.Enabled =
                         gbDeleteTorrentFileAfterEverything.Enabled =
-                            gbuTorrent.Enabled = gbDeluge.Enabled = gbFileWatcher.Enabled = true;
+                            gbuTorrent.Enabled = gbDeluge.Enabled = true;
                 bCreate.Enabled = true;
                 _creationResult = null;
             }));
@@ -467,30 +467,6 @@ namespace TorrentCreatorUploader
         {
             var toolTipUploadTorrentImageFile = new ToolTip();
             toolTipUploadTorrentImageFile.SetToolTip(tbUploadTorrentImageFile, tbUploadTorrentImageFile.Text);
-        }
-
-        private void bFileWatcherEnable_Click(object sender, EventArgs e)
-        {
-            var paths = ConfigurationManager.AppSettings["DownloadFolder"]
-                .Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries).ToList();
-            foreach (var path in paths)
-            {
-                var fsWatcher = new FSystemWatcher(path);
-                _fsWatchers.Add(fsWatcher);
-            }
-
-            foreach (var fsWatcher in _fsWatchers) fsWatcher.StartFsWatcherService();
-            MessageBox.Show(this, @"File Watcher Enabled.", @"Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            bFileWatcherEnable.Enabled = false;
-            bFileWatcherDisable.Enabled = true;
-        }
-
-        private void bFileWatcherDisable_Click(object sender, EventArgs e)
-        {
-            foreach (var fsWatcher in _fsWatchers) fsWatcher.StopFsWatcherService();
-            MessageBox.Show(this, @"File Watcher Disabled.", @"Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            bFileWatcherEnable.Enabled = true;
-            bFileWatcherDisable.Enabled = false;
         }
     }
 }
