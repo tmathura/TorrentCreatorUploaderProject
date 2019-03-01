@@ -496,7 +496,7 @@ namespace TorrentCreatorUploaderLogic
         }
 
         public void SendTorrentToUTorrentViaWebUi(string filePath, string uTorrentIp, int uTorrentPort,
-            string uTorrentUsername, string uTorrentPassword, Guid guid)
+            string uTorrentUsername, string uTorrentPassword, Guid guid, bool setLabel = false, string torrentLabel = null)
         {
             var torrentFilePath = filePath.Replace(Path.GetFileName(filePath), Convert.ToString(guid)) + ".torrent";
             var fs = new FileStream(torrentFilePath, FileMode.Open);
@@ -528,6 +528,36 @@ namespace TorrentCreatorUploaderLogic
                 EventLogEntryType.Information);
             var response = client.PostTorrent(fs);
             var torrent = response.AddedTorrent;
+
+            var uTorrentAddTorrentWithLabel = Convert.ToBoolean(ConfigurationManager.AppSettings["uTorrentAddTorrentWithLabel"]);
+            if (uTorrentAddTorrentWithLabel || setLabel && !string.IsNullOrWhiteSpace(torrentLabel))
+            {
+                var uploadTorrentCategoryId = ConfigurationManager.AppSettings["UploadTorrentCategoryId"];
+                var uploadTorrentCategoryName = "";
+                var folderCategoryName = "";
+                if (!string.IsNullOrWhiteSpace(uploadTorrentCategoryId))
+                {
+                    uploadTorrentCategoryName = ((UploadTorrentCategory)Convert.ToInt32(uploadTorrentCategoryId)).ToString();
+                }
+                try
+                {
+                    var category = GetValueFromDescription<UploadTorrentCategory>(Directory.GetParent(filePath).Name);
+                    folderCategoryName = category.ToString();
+                }
+                catch
+                {
+                }
+
+                if (!string.IsNullOrWhiteSpace(folderCategoryName)) uploadTorrentCategoryName = folderCategoryName;
+                if (!string.IsNullOrWhiteSpace(torrentLabel)) uploadTorrentCategoryName = torrentLabel;
+
+                var request = new UTorrentRequest();
+                request.SetAction(UrlAction.Create("SETPROPS"));
+                request.SetTorrentHash(torrent.Hash);
+                request.SetSetting("label", uploadTorrentCategoryName);
+                client.ProcessRequest(request);
+            }
+
             client.SetSetting("dir_completed_download_flag", dirCompletedDownloadFlag);
             client.SetSetting("dir_completed_download", dirCompletedDownload);
             Log(
@@ -1076,5 +1106,12 @@ namespace TorrentCreatorUploaderLogic
         public string Message { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Type { get; set; }
+    }
+    class UTorrentRequest : Request
+    {
+        protected override bool CheckAction(UrlAction action)
+        {
+            return true;
+        }
     }
 }

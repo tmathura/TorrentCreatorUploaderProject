@@ -109,6 +109,9 @@
             this.cbCopyTorrentFile = new System.Windows.Forms.CheckBox();
             this.gbDeleteTorrentFileAfterEverything = new System.Windows.Forms.GroupBox();
             this.cbDeleteTorrentFileAfterEverything = new System.Windows.Forms.CheckBox();
+            this.cbSetLabel = new System.Windows.Forms.CheckBox();
+            this.lLabel = new System.Windows.Forms.Label();
+            this.tbLabel = new System.Windows.Forms.TextBox();
             this.gbTorrentSite.SuspendLayout();
             this.gbAdvProps.SuspendLayout();
             this.gbOther.SuspendLayout();
@@ -736,6 +739,9 @@
             // 
             this.gbuTorrent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbuTorrent.Controls.Add(this.lLabel);
+            this.gbuTorrent.Controls.Add(this.tbLabel);
+            this.gbuTorrent.Controls.Add(this.cbSetLabel);
             this.gbuTorrent.Controls.Add(this.luTorrentPassword);
             this.gbuTorrent.Controls.Add(this.tbuTorrentPassword);
             this.gbuTorrent.Controls.Add(this.luTorrentUsername);
@@ -747,7 +753,7 @@
             this.gbuTorrent.Controls.Add(this.cbSendTorrentToUTorrentViaWebApi);
             this.gbuTorrent.Location = new System.Drawing.Point(669, 21);
             this.gbuTorrent.Name = "gbuTorrent";
-            this.gbuTorrent.Size = new System.Drawing.Size(325, 143);
+            this.gbuTorrent.Size = new System.Drawing.Size(325, 200);
             this.gbuTorrent.TabIndex = 28;
             this.gbuTorrent.TabStop = false;
             this.gbuTorrent.Text = "uTorrent";
@@ -861,7 +867,7 @@
             this.gbDeluge.Controls.Add(this.tbDelugeInstalledFolder);
             this.gbDeluge.Controls.Add(this.bDelugeInstalledFolder);
             this.gbDeluge.Controls.Add(this.cbSendTorrentToDelugeViaDelugeConsole);
-            this.gbDeluge.Location = new System.Drawing.Point(669, 170);
+            this.gbDeluge.Location = new System.Drawing.Point(669, 227);
             this.gbDeluge.Name = "gbDeluge";
             this.gbDeluge.Size = new System.Drawing.Size(325, 171);
             this.gbDeluge.TabIndex = 29;
@@ -1046,6 +1052,34 @@
             this.cbDeleteTorrentFileAfterEverything.Text = "Delete Torrent File After Everything";
             this.cbDeleteTorrentFileAfterEverything.UseVisualStyleBackColor = true;
             // 
+            // cbSetLabel
+            // 
+            this.cbSetLabel.AutoSize = true;
+            this.cbSetLabel.Location = new System.Drawing.Point(9, 145);
+            this.cbSetLabel.Name = "cbSetLabel";
+            this.cbSetLabel.Size = new System.Drawing.Size(71, 17);
+            this.cbSetLabel.TabIndex = 23;
+            this.cbSetLabel.Text = "Set Label";
+            this.cbSetLabel.UseVisualStyleBackColor = true;
+            // 
+            // lLabel
+            // 
+            this.lLabel.AutoSize = true;
+            this.lLabel.Location = new System.Drawing.Point(6, 171);
+            this.lLabel.Name = "lLabel";
+            this.lLabel.Size = new System.Drawing.Size(36, 13);
+            this.lLabel.TabIndex = 24;
+            this.lLabel.Text = "Label:";
+            // 
+            // tbLabel
+            // 
+            this.tbLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbLabel.Location = new System.Drawing.Point(48, 168);
+            this.tbLabel.Name = "tbLabel";
+            this.tbLabel.Size = new System.Drawing.Size(270, 20);
+            this.tbLabel.TabIndex = 25;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1176,6 +1210,9 @@
         private System.Windows.Forms.TextBox tbDelugePort;
         private System.Windows.Forms.Label lDelugeIP;
         private System.Windows.Forms.TextBox tbDelugeIP;
+        private System.Windows.Forms.Label lLabel;
+        private System.Windows.Forms.TextBox tbLabel;
+        private System.Windows.Forms.CheckBox cbSetLabel;
     }
 }
 

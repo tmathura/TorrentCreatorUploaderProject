@@ -81,6 +81,8 @@ namespace TorrentCreatorUploader
             tbuTorrentPort.Text = ConfigurationManager.AppSettings["uTorrentPort"];
             tbuTorrentUsername.Text = ConfigurationManager.AppSettings["uTorrentUsername"];
             tbuTorrentPassword.Text = ConfigurationManager.AppSettings["uTorrentPassword"];
+            cbSetLabel.Checked =
+                Convert.ToBoolean(ConfigurationManager.AppSettings["uTorrentAddTorrentWithLabel"]);
 
             cbSendTorrentToDelugeViaDelugeConsole.Checked =
                 Convert.ToBoolean(ConfigurationManager.AppSettings["SendTorrentToDelugeViaDelugeConsole"]);
@@ -267,7 +269,7 @@ namespace TorrentCreatorUploader
                                         EventLogEntryType.Information);
                                     new TorrentUpload().SendTorrentToUTorrentViaWebUi(destFile, uTorrentIp,
                                         uTorrentPort, uTorrentUsername, uTorrentPassword,
-                                        guid);
+                                        guid, cbSetLabel.Checked, tbLabel.Text);
                                     MessageBox.Show(this, @"Torrent file sent to uTorrent successfully.", @"Info",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
