@@ -2,6 +2,11 @@ version: 1.0.0.{build}
 skip_tags: true
 pull_requests:
   do_not_increment_build_number: true
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "1.0.0.{build}"
+  assembly_file_version: "{version}"
 image: Visual Studio 2017
 before_build:
 - cmd: nuget restore TorrentCreatorUploaderProject.sln
