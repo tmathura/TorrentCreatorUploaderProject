@@ -18,3 +18,9 @@ artifacts:
   name: TorrentCreatorUploaderService v$(appveyor_build_version)
 - path: TorrentCreatorUploader\bin\Debug\
   name: TorrentCreatorUploader v$(appveyor_build_version)
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: UZlJS4I1Uhwz3+gT51KJTXF3jLAvdaH8UeS6NyZdxcN/qTQyanLmobxOk+psRlJ9
+  on:
+    branch: master
